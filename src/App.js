@@ -9,6 +9,7 @@ import Movies from "./Pages/Movies/Movies";
 import Series from "./Pages/Series/Series";
 import Search from "./Pages/Search/Search";
 import { Route } from "react-router-dom";
+import ContentDisplay from "./components/ContentDisplay/ContentDisplay";
 function App() {
   return (
     <BrowserRouter>
