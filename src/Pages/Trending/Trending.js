@@ -22,7 +22,7 @@ const Trending = () => {
     return (
         <div>
           <span className="pageTitle">Trending Today</span>
-          <div className="trending">
+          <div className="trendingstuff">
             {content &&
               content.map((c) => (
                 <Content
@@ -38,7 +38,7 @@ const Trending = () => {
           </div>
           <CustomPagination setPage={setPage} />
         </div>
-      );
+    );
 
 };
 

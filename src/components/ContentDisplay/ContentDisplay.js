@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #FFF',
     borderRadius: 15,
     color: "black",
-    boxShadow: theme.shadows[9],
-    padding: theme.spacing(2, 2, 2),
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 2, 4.5),
   },
 }));
 
@@ -33,6 +33,7 @@ export default function ContentDisplay({children, media_type, id}) {
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
+  const [credits, setCredits] = useState([]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -56,15 +57,23 @@ export default function ContentDisplay({children, media_type, id}) {
  useEffect(() => {
      fetchData();
      fetchTrailer();
+     fetchCredits();
      // eslint-disable-next-line
  }, []);
+   const fetchCredits = async () => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/${media_type}/${id}/credits?api_key=${process.env.REACT_APP_APIKEY}&language=en-US`
+    );
+    setCredits(data.cast.name);
+  };
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
+    <>
+      <div type="button" onClick={handleOpen} style={{cursor: "pointer"}} color="inherit"
+      >
 
         {children}
-      </button>
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -95,7 +104,7 @@ export default function ContentDisplay({children, media_type, id}) {
                   alt={content.name || content.title}
                   className="ContentDisplay__landscape"
                 />
-              <div className="ContentDisplay__about">
+               <div className="ContentDisplay__about">
                   <span className="ContentDisplay__title">
                     <h6>{content.name || content.title}</h6> (
                    <h6> {(content.first_air_date ||
@@ -104,8 +113,10 @@ export default function ContentDisplay({children, media_type, id}) {
                     )
                     </span>
                     <span className = "vote">
-                      {content.vote_average}</span>
-        
+                    Rating: {content.vote_average}/10</span>
+                    <span className="cast">
+                     {content.credits}
+                    </span>
                 
                     <span className="ContentDisplay__description">
                      Overview : {content.overview}
@@ -121,6 +132,6 @@ export default function ContentDisplay({children, media_type, id}) {
            )}  
         </Fade>
       </Modal>
-    </div>
+    </>  
   );
-};
+}

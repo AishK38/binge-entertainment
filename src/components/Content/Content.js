@@ -5,18 +5,22 @@ import ContentDisplay from "../ContentDisplay/ContentDisplay";
 
 const Content = ({
     id, poster, title, date, media_type, vote_average,
-}) => {
-    return(
+   }) => {
+     return(
+      <>   
         <ContentDisplay media_type={media_type}id={id}>
+         <div className="media">
             <Badge badgeContent={vote_average} color={'primary'} />
-            <img src= {poster? `${img_300}/${poster}` : unavailable} alt={title} 
+            <img src= {poster? `${img_300}/${poster}` : unavailable} alt={title} className="poster"
             />
             <b className="title">{title}</b>
-            <span classname="subtitle">{media_type=== "tv" ? "TV Show" : "Movie"}
+            <span classname="subTitle" style={{fontSize: "12px"}}>{media_type=== "tv" ? "TV Show" : "Movie"}
             </span>
-            <span className='subtitle'>Released on : {date}</span>
+            <span className='subTitle'>Released on : {date}</span>
+         </div> 
         </ContentDisplay>
-    )    
+      </> 
+    ) ;   
 };
 
 export default Content;

@@ -10,6 +10,7 @@ import Series from "./Pages/Series/Series";
 import Search from "./Pages/Search/Search";
 import { Route } from "react-router-dom";
 import ContentDisplay from "./components/ContentDisplay/ContentDisplay";
+import Content from "./components/Content/Content";
 function App() {
   return (
     <BrowserRouter>
@@ -22,7 +23,6 @@ function App() {
            <Route path='/series' component={Series}/>
            <Route path='/search' component={Search}/>
          </Switch>
-
        </Container>
      </div>
      
