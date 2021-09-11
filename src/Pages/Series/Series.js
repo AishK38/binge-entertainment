@@ -28,7 +28,7 @@ const Series = () => {
          <div>
             <span className="pageTitle">TV Shows</span>
             <Genres type="tv" selectGenres = {selectGenres} genres={genres} setGenres={setGenres} setSelectGenres={setSelectGenres} setPage={setPage}/>
-            <div className="trending">
+            <div className="trendingstuff">
              {content &&
                content.map((c) => (
                 <Content

@@ -26,7 +26,7 @@ const Movies = () => {
         <div>
           <span className="pageTitle">Movies</span>
           <Genres type="movie" selectGenres = {selectGenres} genres={genres} setGenres={setGenres} setSelectGenres={setSelectGenres} setPage={setPage}/>
-          <div className="trending">
+          <div className="trendingstuff">
             {content &&
               content.map((c) => (
                 <Content

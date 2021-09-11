@@ -1,9 +1,10 @@
-import { Button, createMuiTheme, Tabs, TextField, ThemeProvider } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { Button, createMuiTheme, TextField, ThemeProvider } from "@material-ui/core";
+import { Children, useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import axios from "axios";
 import Content from "../../components/Content/Content";
 import CustomPagination from "../../components/Pagination/CustomPagination";
+import ContentDisplay from "../../components/ContentDisplay/ContentDisplay";
 
 const Search = () => {
 
@@ -58,13 +59,13 @@ const Search = () => {
             </Button>
           </div>
         </ThemeProvider>
-        <div className="trending">
+        <div className="trendingstuff">
           {content && content.map((c) => (
-            <Content key={c.id} id={c.id} poster={c.poster_path} title={c.title || c.name} date={c.first_air_date || c.release_date} vote_average={c.vote_average}
+            <Content key={c.id} id={c.id} poster={c.poster_path} title={c.title || c.name} date={c.first_air_date || c.release_date} vote_average={c.vote_average} media_type={c.media_type}
             />
           ))}
-          {searchText && !content && 
-            (<h2>Nothing as such found!</h2>)}
+          {searchText && !content
+            && <h2>No results</h2>}
         </div>
         {numOfPages > 1 && (
           <CustomPagination setPage={setPage} numOfPages={numOfPages} />
