@@ -99,16 +99,15 @@ export default function ContentDisplay({children, media_type, id}) {
                 />
                <div className="ContentDisplay__about">
                   <span className="ContentDisplay__title">
-                    <h6>{content.name || content.title}(
-                     {(content.first_air_date ||
-                      content.release_date
-                    ).substring(0, 4)}
-                    )</h6>
+                    <h6>{content.name || content.title}
+                    </h6>
                   </span>
+                    <span> {media_type=== "tv" ? "TV Show" : "Movie"} </span>
                     <span className = "vote">
                     Rating: {content.vote_average}/10</span>
-            
-                
+                    <span> Released on: {content.first_air_date ||
+                      content.release_date}
+                    </span>  
                     <span className="ContentDisplay__description">
                      Overview : {content.overview}
                     </span>
